@@ -5,6 +5,12 @@ builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
+// Konventerar alla datum och tider
+app.UseRequestLocalization(new RequestLocalizationOptions()
+    .SetDefaultCulture("en-US")
+    .AddSupportedCultures("en-US")
+    .AddSupportedUICultures("en-US"));
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
