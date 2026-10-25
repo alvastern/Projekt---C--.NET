@@ -4,92 +4,101 @@
     ViewData["Title"] = "Renoveringskalkylator";
 }
 
-<head>
+<header>
+    <h1>Renoveringskalkylator</h1>
+</header>
 
-</head>
+<p>Osäker på hur mycket material som går åt till din renovering? I denna renoveringskalkylator kan 
+    du räkna ut hur mycket färg, golv och takpanel som går åt till en specifik yta i ditt hem. Ange 
+    information om hur stor yta du vill täcka, samt hur många m² som varje paket/burk kommer att 
+    täcka, så kommer denna kalkylator räkna ut hur mycket material du behöver köpa!</p>
 
-<body>
-    <header>
-        <h1>Renoveringskalkylator</h1>
-    </header>
+<section>
+    <h2>Hur mycket färg går åt?</h2>
 
-    <main>
-        <p>Osäker på hur mycket material som går åt till din renovering? I denna renoveringskalkylator kan 
-            du räkna ut hur mycket färg, golv och takpanel som gåt åt till en specifik yta i ditt hem. Ange 
-            information om hur stor yta du vill täcka, samt hur många m² som varje paket/burk kommer att 
-            täcka, så kommer denna kalkylator räkna hur hur mycket material du behöver köpa!</p>
+    <form method="post">
+        <div>
+            <label for="colorArea" class="visually-hidden">Yta som ska täckas (m²)</label>
+            <input type="number" id="colorArea" name="colorArea" placeholder="Yta som ska målas i m²" min="0.01" step="any" required/>
 
-        <section>
-            <h2>Hur mycket färg går åt?</h2>`
+            <label for="strokeNumber" class="visually-hidden">Antal strykningar</label>
+            <input type="number" id="strokeNumber" name="strokeNumber" placeholder="Antal strykningar" min="1" step="1" required/>
 
-            <form>
-                <div>
-                    <input type="text" id="yta" name="ytaM²" placeholder="Yta som ska målas i m²"/>
-                    <input type="text" id="strykningar" name="antalStrykningar" placeholder="Antal strykningar"/>
-                    <input type="text" id="liter/m²" name="liter" placeholder="Liter som går åt per m²"/>
-                    <input type="text" id=liter/burk name=literPerBurk placeholder="Liter per burk"/>
-                </div>
-            </form>
+            <label for="litersMeters" class="visually-hidden">Liter som går åt per m²</label>
+            <input type="number" id="litersMeters" name="litersMeters" placeholder="Liter som går åt per m²" min="0.01" step="any" required/>
 
-            <article>
-                <h3>Antal liter</h3>
-                <p></p>
+            <label for="litersCan" class="visually-hidden">Liter per burk</label>
+            <input type="number" id="litersCan" name="litersCan" placeholder="Liter per burk" min="0.01" step="any" required/>
+        </div>
 
-                <h3>Antal burkar</h3>
-                <p></p>
-            </article>
+        <button type="submit">Beräkna</button>
+    </form>
 
-            <!--Här ska det komma en reverseikon-->
+    <article>
+        <h3>Antal liter</h3>
+        <p></p>
 
-            <button>Beräkna</button>
-        </section>
+        <h3>Antal burkar</h3>
+        <p></p>
+    </article>
 
-        <section>
-            <h2>Hur mycket golv går åt?</h2>
+    <!--Här ska det komma en reverseikon-->
+</section>
 
-            <form>
-                <div>
-                    <input type="text" id="yta" name="yta" placeholder="Yta som ska täckas"/>
-                    <input type="text" id="spill" name="spill" placeholder="Spill i %"/>
-                    <input type="text" id="paketinnehall" name="paket" placeholder="M² per paket"/>
-                </div>
-            </form>
+<section>
+    <h2>Hur mycket golv går åt?</h2>
 
-            <article>
-                <h3>Antal m²</h3>
-                <p></p>
+    <form method="post">
+        <div>
+            <label for="floorArea" class="visually-hidden">Yta som ska täckas</label>
+            <input type="number" id="floorArea" name="floorArea" placeholder="Yta som ska täckas" min="0.01" step="any" required/>
 
-                <h3>Antal paket</h3>
-                <p></p>
-            </article>
+            <label for="floorWaste" class="visually-hidden">Spill i %</label>
+            <input type="number" id="floorWaste" name="floorWaste" placeholder="Spill i %" min="0" step="any" required/>
 
-            <!--Här ska det komma en reverseikon-->
+            <label for="floorPackageCoverage" class="visually-hidden">M² per paket</label>
+            <input type="number" id="floorPackageCoverage" name="floorPackageCoverage" placeholder="M² per paket" min="0.01" step="any" required/>
+        </div>
 
-            <button>Beräkna</button>
-        </section>
+        <button type="submit">Beräkna</button>
+    </form>
 
-        <section>
-            <h2>Hur mycket takpanel går åt?</h2>
+    <article>
+        <h3>Antal m²</h3>
+        <p></p>
 
-            <form>
-                <div>
-                    <input type="text" id="yta" name="yta" placeholder="Yta som ska täckas"/>
-                    <input type="text" id="spill" name="spill" placeholder="Spill i %"/>
-                    <input type="text" id="paketinnehall" name="paket" placeholder="M² per paket"/>
-                </div>
-            </form>
+        <h3>Antal paket</h3>
+        <p></p>
+    </article>
 
-            <article>
-                <h3>Antal m²</h3>
-                <p></p>
+    <!--Här ska det komma en reverseikon-->
+</section>
 
-                <h3>Antal paket</h3>
-                <p></p>
-            </article>
+<section>
+    <h2>Hur mycket takpanel går åt?</h2>
 
-            <!--Här ska det komma en reverseikon-->
+    <form method="post">
+        <div>
+            <label for="ceilingArea" class="visually-hidden">Yta som ska täckas</label>
+            <input type="number" id="ceilingArea" name="ceilingArea" placeholder="Yta som ska täckas" min="0.01" step="any" required/>
 
-            <button>Beräkna</button>
-        </section>
-    </main>
-</body>
+            <label for="ceilingWaste" class="visually-hidden">Spill i %</label>
+            <input type="number" id="ceilingWaste" name="ceilingWaste" placeholder="Spill i %" min="0" step="any" required/>
+
+            <label for="ceilingPackageCoverage" class="visually-hidden">M² per paket</label>
+            <input type="number" id="ceilingPackageCoverage" name="ceilingPackageCoverage" placeholder="M² per paket" min="0.01" step="any" required/>
+        </div>
+
+        <button type="submit">Beräkna</button>
+    </form>
+
+    <article>
+        <h3>Antal m²</h3>
+        <p></p>
+
+        <h3>Antal paket</h3>
+        <p></p>
+    </article>
+
+    <!--Här ska det komma en reverseikon-->
+</section>
