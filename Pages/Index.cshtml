@@ -1,0 +1,47 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Renoveringskalkylator";
+}
+
+<head>
+
+</head>
+
+<body>
+    <header>
+        <h1>Renoveringskalkylator</h1>
+    </header>
+
+    <main>
+        <p>Osäker på hur mycket material som går åt till din renovering? I denna renoveringskalkylator kan 
+            du räkna ut hur mycket färg, golv och takpanel som gåt åt till en specifik yta i ditt hem. Ange 
+            information om hur stor yta du vill täcka, samt hur många m² som varje paket/burk kommer att 
+            täcka, så kommer denna kalkylator räkna hur hur mycket material du behöver köpa!</p>
+
+        <section>
+            <h2>Hur mycket färg går åt?</h2>`
+
+            <form>
+                <div>
+                    <input type="text" id="yta" name="ytaM²" placeholder="Yta som ska målas i m²"/>
+                    <input type="text" id="strykningar" name="antalStrykningar" placeholder="Antal strykningar"/>
+                    <input type="text" id="liter/m²" name="liter" placeholder="Liter som går åt per m²"/>
+                    <input type="text" id=liter/burk name=literPerBurk placeholder="Liter per burk"/>
+                </div>
+            </form>
+
+            <article>
+                <h3>Antal liter</h3>
+                <p></p>
+
+                <h3>Antal burkar</h3>
+                <p></p>
+            </article>
+
+            <!--Här ska det komma en reverseikon-->
+            
+            <button>Beräkna</button>
+        </section>
+    </main>
+</body>
