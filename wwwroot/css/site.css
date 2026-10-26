@@ -1,31 +1,215 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
 body {
-  margin-bottom: 60px;
+  background-color: black;
+  color: white;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+header {
+  background-image: linear-gradient(rgb(0 0 0 / 75%), rgb(0 0 0 / 75%)), url('../images/Renoverat\ timmerhus\ bland\ tallar.png');
+  background-size: cover;
+  background-position: center;
+  height: 30vh;
+  display: flex;
+  align-items: center;
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+h1 {
+  box-sizing: border-box;
+  width: calc(100% - 48px);
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 0;
+  font-weight: 700;
+  font-size: 3rem;
+  color: white;
+}
+
+.lead-text {
+  width: calc(100% - 48px);
+  max-width: 65ch;
+  margin: 40px 0;
+  margin-left: max(24px, calc((100% - 950px) / 2));
+}
+
+/* Kalkylrutorna */
+section {
+  display: grid;
+  grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr) auto;
+  gap: 24px 32px;
+  align-items: stretch;
+
+  box-sizing: border-box;
+  width: calc(100% - 48px);
+  max-width: 950px;
+  margin: 0 auto 36px;
+  padding: 32px;
+
+  background-color: white;
+  color: #171717;
+  border-radius: 6px;
+}
+
+section h2 {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+/* Låter formulärets innehåll använda sektionens grid */
+section form {
+  display: contents;
+}
+
+/* Gruppen med inmatningsfält */
+section form > div:not([class]) {
+  grid-column: 1;
+  grid-row: 2;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+section input {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  padding: 11px 14px;
+  font-size: 0.9rem;
+  color: #222;
+  background-color: white;
+  border: 1px solid #e1e1e1;
+  border-radius: 10px;
+  box-shadow: 0 3px 4px rgb(0 0 0 / 18%);
+}
+
+section input::placeholder {
+  color: #777;
+  opacity: 1;
+}
+
+section input:focus {
+  outline: 2px solid #536122;
+  outline-offset: 2px;
+}
+
+/* Resultatrutan får samma höjd som gruppen med fält */
+section article {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: stretch;
+  min-width: 0;
+  margin: 0;
+  padding: 24px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  box-shadow: 0 3px 4px rgb(0 0 0 / 18%);
+}
+
+section article h3 {
+  margin: 0 0 6px;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+section article p {
+  margin: 0 0 20px;
+  color: #666;
+}
+
+section article p:last-child {
+  margin-bottom: 0;
+}
+
+/* Knappen ligger till höger, i nederkant */
+section button[type="submit"] {
+  grid-column: 3;
+  grid-row: 2;
+  align-self: end;
+  position: static;
+  display: block;
+  margin: 0;
+  padding: 10px 26px;
+  font-size: 0.9rem;
+  color: white;
+  background-color: #536122;
+  border: none;
+  border-radius: 24px;
+  cursor: pointer;
+}
+
+section button[type="submit"]:hover {
+  background-color: #3e4919;
+}
+
+section button[type="submit"]:focus-visible {
+  outline: 2px solid #536122;
+  outline-offset: 4px;
+}
+
+/* Felmeddelanden under kalkylen */
+section form > div[class] {
+  grid-column: 1 / -1;
+  grid-row: 3;
+}
+
+section .validation-summary-errors {
+  color: #a51d1d;
+}
+
+section .validation-summary-errors ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+section .validation-summary-valid {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  header {
+    min-height: 180px;
+    height: auto;
+    padding: 40px 24px;
+  }
+
+  h1 {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    overflow-wrap: anywhere;
+  }
+
+  .lead-text {
+    width: auto;
+    max-width: 65ch;
+    margin: 32px 24px;
+  }
+
+  section {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+    padding: 24px;
+  }
+
+  section h2 {
+    font-size: 1.25rem;
+  }
+
+  section article {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  section button[type="submit"] {
+    grid-column: 1;
+    grid-row: 4;
+    justify-self: end;
+  }
+
+  section form > div[class] {
+    grid-column: 1;
+    grid-row: 5;
+  }
 }
