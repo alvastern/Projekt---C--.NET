@@ -10,6 +10,8 @@ namespace Renoveringskalkylator.Pages
         public decimal? FloorPackageCount { get; private set; }
         public decimal? CeilingMaterialArea { get; private set; }
         public decimal? CeilingPackageCount { get; private set; }
+        public decimal? PaintLiters { get; private set; }
+        public decimal? PaintCanCount { get; private set; }
 
         public void OnGet()
         {
@@ -67,6 +69,34 @@ namespace Renoveringskalkylator.Pages
 
             CeilingPackageCount = calculator.CalculatePackageCount(
                 CeilingMaterialArea.Value, ceilingPackageCoverage);
+        }
+
+        public void OnPostPaint(decimal colorArea, int strokeNumber, decimal litersMeters, decimal litersCan)
+        {
+            // Kontrollerar att inmatningen kunde tolkas som rätt datatyper.
+            if (!ModelState.IsValid)
+            {
+                return;
+            }
+
+            // Alla värden måste vara större än noll.
+            if (colorArea <= 0 || strokeNumber <= 0 ||
+                litersMeters <= 0 || litersCan <= 0)
+            {
+                ModelState.AddModelError(
+                    string.Empty,
+                    "Ange värden större än noll. Antal strykningar ska vara ett heltal.");
+
+                return;
+            }
+
+            PaintCalculator calculator = new PaintCalculator();
+
+            PaintLiters = calculator.CalculateLiters(
+                colorArea, strokeNumber, litersMeters);
+
+            PaintCanCount = calculator.CalculateCanCount(
+                PaintLiters.Value, litersCan);
         }
     }
 }

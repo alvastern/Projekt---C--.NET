@@ -16,7 +16,12 @@
 <section>
     <h2>Hur mycket färg går åt?</h2>
 
-    <form method="post">
+    <form method="post" asp-page-handler="Paint">
+        @if (Request.Query["handler"] == "Paint")
+        {
+            <div asp-validation-summary="All"></div>
+        }
+
         <div>
             <label for="colorArea" class="visually-hidden">Yta som ska täckas (m²)</label>
             <input type="number" id="colorArea" name="colorArea" placeholder="Yta som ska målas i m²" min="0.01" step="any" required/>
@@ -34,21 +39,27 @@
         <button type="submit">Beräkna</button>
     </form>
 
-    <article>
-        <h3>Antal liter</h3>
-        <p></p>
+    @if (Model.PaintLiters.HasValue)
+    {
+        <article>
+            <h3>Antal liter</h3>
+            <p>@Model.PaintLiters.Value.ToString("0.##") liter</p>
 
-        <h3>Antal burkar</h3>
-        <p></p>
-    </article>
-
-    <!--Här ska det komma en reverseikon-->
+            <h3>Antal burkar</h3>
+            <p>@Model.PaintCanCount burkar</p>
+        </article>
+    }
 </section>
 
 <section>
     <h2>Hur mycket golv går åt?</h2>
 
     <form method="post" asp-page-handler="Floor">
+        @if (Request.Query["handler"] == "Floor")
+        {
+            <div asp-validation-summary="All"></div>
+        }
+
         <div>
             <label for="floorArea" class="visually-hidden">Yta som ska täckas</label>
             <input type="number" id="floorArea" name="floorArea" placeholder="Yta som ska täckas" min="0.01" step="any" required/>
@@ -63,30 +74,30 @@
         <button type="submit">Beräkna</button>
     </form>
 
-    <!--Här visas felmeddelanden om inmatningen är ogiltig-->
-    <div asp-validation-summary="All"></div>
-
     @if (Model.FloorMaterialArea.HasValue)
-{
-    <article>
-        <h3>Materialbehov inklusive spill</h3>
+    {
+        <article>
+            <h3>Materialbehov inklusive spill</h3>
 
-        <!--Skriver ut materialbehovet från klassen PackageCalculator-->
-        <p>@Model.FloorMaterialArea.Value.ToString("0.##") m²</p>
+            <!--Skriver ut materialbehovet från klassen PackageCalculator-->
+            <p>@Model.FloorMaterialArea.Value.ToString("0.##") m²</p>
 
-        <h3>Antal paket</h3>
-        <!--Skriver ut antal paket från klassen PackageCalculator-->
-        <p>@Model.FloorPackageCount paket</p>
-    </article>
-}
-
-    <!--Här ska det komma en reverseikon-->
+            <h3>Antal paket</h3>
+            <!--Skriver ut antal paket från klassen PackageCalculator-->
+            <p>@Model.FloorPackageCount paket</p>
+        </article>
+    }
 </section>
 
 <section>
     <h2>Hur mycket takpanel går åt?</h2>
 
     <form method="post" asp-page-handler="Ceiling">
+        @if (Request.Query["handler"] == "Ceiling")
+        {
+            <div asp-validation-summary="All"></div>
+        }
+
         <div>
             <label for="ceilingArea" class="visually-hidden">Yta som ska täckas</label>
             <input type="number" id="ceilingArea" name="ceilingArea" placeholder="Yta som ska täckas" min="0.01" step="any" required/>
@@ -115,6 +126,4 @@
             <p>@Model.CeilingPackageCount paket</p>
         </article>
     }
-
-    <!--Här ska det komma en reverseikon-->
 </section>
