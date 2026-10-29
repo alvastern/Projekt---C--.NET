@@ -16,6 +16,7 @@
 <section>
     <h2>Hur mycket färg går åt?</h2>
 
+    <!--Formulär där användaren matar in information om färgbehov-->
     <form method="post" asp-page-handler="Paint">
         @if (Request.Query["handler"] == "Paint")
         {
@@ -39,13 +40,18 @@
         <button type="submit">Beräkna</button>
     </form>
 
+    <!--Här visas resultatet från beräkningen om det finns ett värde-->
     @if (Model.PaintLiters.HasValue)
     {
         <article>
             <h3>Antal liter</h3>
+
+            <!--Skriver ut materialbehovet från klassen PaintCalculator-->
             <p>@Model.PaintLiters.Value.ToString("0.##") liter</p>
 
             <h3>Antal burkar</h3>
+
+            <!--Skriver ut antal burkar från klassen PaintCalculator-->
             <p>@Model.PaintCanCount burkar</p>
         </article>
     }
@@ -54,6 +60,7 @@
 <section>
     <h2>Hur mycket golv går åt?</h2>
 
+    <!--Formulär där användaren matar in information om golvbehov-->
     <form method="post" asp-page-handler="Floor">
         @if (Request.Query["handler"] == "Floor")
         {
@@ -74,6 +81,7 @@
         <button type="submit">Beräkna</button>
     </form>
 
+    <!--Här visas resultatet från beräkningen om det finns ett värde-->
     @if (Model.FloorMaterialArea.HasValue)
     {
         <article>
@@ -92,6 +100,7 @@
 <section>
     <h2>Hur mycket takpanel går åt?</h2>
 
+    <!--Formulär där användaren matar in information om takbehov-->
     <form method="post" asp-page-handler="Ceiling">
         @if (Request.Query["handler"] == "Ceiling")
         {
@@ -112,6 +121,7 @@
         <button type="submit">Beräkna</button>
     </form>
 
+    <!--Här visas resultatet från beräkningen om det finns ett värde-->
     @if (Model.CeilingMaterialArea.HasValue)
     {
         <article>

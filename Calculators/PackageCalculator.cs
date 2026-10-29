@@ -1,5 +1,6 @@
 namespace Renoveringskalkylator.Calculators
 {
+    // Klass för att beräkna hur mycket material och paket som behövs för golv och takpanel
     public class PackageCalculator
     {
         // Beräknar materialet som behövs för att fylla ytan + spillmaterial

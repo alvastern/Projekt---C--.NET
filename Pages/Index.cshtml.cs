@@ -6,6 +6,7 @@ namespace Renoveringskalkylator.Pages
 {
     public class IndexModel : PageModel
     {
+        // Engenskaper som används för att lägra beräknade värden
         public decimal? FloorMaterialArea { get; private set; }
         public decimal? FloorPackageCount { get; private set; }
         public decimal? CeilingMaterialArea { get; private set; }
@@ -13,14 +14,10 @@ namespace Renoveringskalkylator.Pages
         public decimal? PaintLiters { get; private set; }
         public decimal? PaintCanCount { get; private set; }
 
-        public void OnGet()
-        {
-            
-        }
-
+        // Metod som hanterar POST-förfrågningar för golvberäkning
         public void OnPostFloor(decimal floorArea, decimal floorWaste, decimal floorPackageCoverage)
         {
-            // Kontrollerar att inmatningen kan tolkas som tal
+            // Kontrollerar att inmatningen kan tolkas som rätt datatyp
             if (!ModelState.IsValid)
             {
                 return;
@@ -39,13 +36,15 @@ namespace Renoveringskalkylator.Pages
             // Skapar ett objekt av klassen PackageCalculator
             PackageCalculator calculator = new PackageCalculator();
 
+            // Beräknar hur mycket golv som behövs och hur många paket
             FloorMaterialArea = calculator.CalculateMaterialArea(floorArea, floorWaste);
             FloorPackageCount = calculator.CalculatePackageCount(FloorMaterialArea.Value, floorPackageCoverage);
         }
 
+        // Metod som hanterar POST-förfrågningar för takpanel
         public void OnPostCeiling(decimal ceilingArea, decimal ceilingWaste, decimal ceilingPackageCoverage)
         {
-            // Kontrollerar att inmatningen kan tolkas som tal.
+            // Kontrollerar att inmatningen kan tolkas som rätt datatyp.
             if (!ModelState.IsValid)
             {
                 return;
@@ -64,13 +63,12 @@ namespace Renoveringskalkylator.Pages
             // Återanvänder samma kalkylklass som för golv.
             PackageCalculator calculator = new PackageCalculator();
 
-            CeilingMaterialArea = calculator.CalculateMaterialArea(
-                ceilingArea, ceilingWaste);
-
-            CeilingPackageCount = calculator.CalculatePackageCount(
-                CeilingMaterialArea.Value, ceilingPackageCoverage);
+            // Beräknar hur mycket takpanel som behövs och hur många paket
+            CeilingMaterialArea = calculator.CalculateMaterialArea(ceilingArea, ceilingWaste);
+            CeilingPackageCount = calculator.CalculatePackageCount(CeilingMaterialArea.Value, ceilingPackageCoverage);
         }
 
+        // Metod som hanterar POST-förfrågningar för färgberäkning
         public void OnPostPaint(decimal colorArea, int strokeNumber, decimal litersMeters, decimal litersCan)
         {
             // Kontrollerar att inmatningen kunde tolkas som rätt datatyper.
@@ -90,13 +88,12 @@ namespace Renoveringskalkylator.Pages
                 return;
             }
 
+            // Skapar ett objekt av klassen PaintCalculator
             PaintCalculator calculator = new PaintCalculator();
 
-            PaintLiters = calculator.CalculateLiters(
-                colorArea, strokeNumber, litersMeters);
-
-            PaintCanCount = calculator.CalculateCanCount(
-                PaintLiters.Value, litersCan);
+            // Beräknar hur många liter färg som behövs och hur många burkar
+            PaintLiters = calculator.CalculateLiters(colorArea, strokeNumber, litersMeters);
+            PaintCanCount = calculator.CalculateCanCount(PaintLiters.Value, litersCan);
         }
     }
 }
